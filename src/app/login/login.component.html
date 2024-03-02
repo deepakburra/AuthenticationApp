@@ -1,0 +1,40 @@
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<script src="togglevisibility.js"></script>
+<div class="body">
+    <form #fm="ngForm" (ngSubmit)="submit(em, pwd)">
+        <div class="wrapper">
+            <p class="login-heading"><b>Log In</b></p>
+            <div class="inputbox">
+                <input type="text" name="email" #em="ngModel" ngModel placeholder="Enter email address" class="input" autocomplete="off" pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.com$" required>
+                <i class='bx bx-user'></i>
+            </div>
+            <div class="error" *ngIf="(fm.submitted || em.touched) && em.errors?.['required']">
+                Please enter your email.
+               </div>
+               <div class="error" *ngIf="em.errors?.['pattern']">
+                enter valid email address.
+              </div>
+
+            <div class="inputbox">
+                <input type="password" name="password" #pwd="ngModel" ngModel placeholder="Enter Password" class="input" id="password" minlength="8" required>
+                <i class='bx bx-lock-alt'></i>
+            </div>
+            <div class="error" *ngIf="(fm.submitted || pwd.touched) && pwd.errors?.['required']">
+                Please enter your password.
+              </div>
+              <div class="error" *ngIf="(fm.submitted || pwd.touched) && pwd.errors?.['minlength']">
+                enter minimum 8 characters.
+              </div>
+
+            <div class="togglevisible">
+                <input type="checkbox" name="showpassword" id="showpassword" (click)="toggleVisibility()">&nbsp;&nbsp;<label for="showpassword">Show Password</label>
+            </div>
+            <div class="login">
+                <button type="submit" value="Login" class="login-btn"> Login </button>
+            </div>
+            <div class="signup">
+                <p>Don't have an account?<a routerLink="signup" (click)="gotosignup()"><b> Register</b></a></p>
+            </div>
+        </div>
+    </form>
+</div>

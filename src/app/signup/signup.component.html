@@ -1,0 +1,49 @@
+<div class="body">
+    <form #fm="ngForm" (ngSubmit)="submit(em,pwd,mobile,fm)">
+        <div class="wrapper">
+            <p class="signup-heading"><b>Sign up</b></p>
+         
+            <div class="inputbox">
+                <input type="text" name="username" #em="ngModel" ngModel placeholder="Enter email address" class="input" pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.com$" autocomplete="off" required>
+            </div>
+            <div class="error" *ngIf="(fm.submitted || em.touched) && em.errors?.['required']">
+                Please enter your email.
+               </div>
+               <div class="error" *ngIf="em.errors?.['pattern']">
+                enter valid email address.
+              </div>
+
+            <div class="inputbox">
+                <input type="password" name="password" #pwd="ngModel" ngModel placeholder="Enter Password" class="input" minlength="8" required>
+            </div>
+            <div class="error" *ngIf="(fm.submitted || pwd.touched) && pwd.errors?.['required']">
+                Please enter your password.
+              </div>
+              <div class="error" *ngIf="(fm.submitted || pwd.touched) && pwd.errors?.['minlength']">
+                enter minimum 8 characters.
+              </div>
+
+
+            <div class="inputbox">
+                <input type="password" name="confirmpassword" #pwd1="ngModel" ngModel placeholder="Confirm Password" class="input" minlength="8" required>
+            </div>
+            <div class="error" *ngIf="(fm.submitted || pwd1.touched) && pwd1.errors?.['required']">
+                Please Re-enter your password.
+              </div>
+              <div class="error" *ngIf="(fm.submitted || pwd1.touched) && pwd1.errors?.['minlength']">
+                enter minimum 8 characters.
+              </div>
+
+
+            <div class="inputbox">
+                <input type="tel" name="mobilenumber" #mobile="ngModel" ngModel placeholder="Enter Mobile number" class="input" autocomplete="off" required>
+            </div>
+            <div class="signup">
+                <button type="submit" value="Sign up" class="signup-btn"> Sign Up </button>
+            </div>
+            <div class="signup">
+                <p>Already have an account?<a routerLink="login" (click)="gotologin()"><b> Login</b></a></p>
+            </div>
+        </div>
+    </form>
+</div>
